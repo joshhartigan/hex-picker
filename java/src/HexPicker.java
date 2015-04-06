@@ -1,12 +1,24 @@
 import javax.swing.*;
 import java.awt.*;
 
-class HpWindow extends JComponent {
+class HpComponent extends JComponent {
+  private Color color;
+
+  HpComponent() {
+    color = new Color(0, 0, 0);
+  }
+
+  public void setColor(Color color) {
+    this.color = color;
+  }
+
   public void paint(Graphics g) {
-    // testing code {
-      g.setColor(new Color(34, 209, 24));
-      g.fillRect(10, 10, 200, 200);
-    // }
+    g.setColor(color);
+
+    int width = 200;
+    int height = 200;
+
+    g.fillRect(0, 0, width / 2, height);
   }
 }
 
@@ -15,8 +27,18 @@ public class HexPicker {
 
     JFrame window = new JFrame("Hex Picker 3000");
     window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    window.setBounds(30, 30, 300, 300);
-    window.getContentPane().add(new HpWindow());
+    window.setLayout(new GridLayout());
+
+    HpComponent hp = new HpComponent();
+    window.getContentPane().add(hp);
+
+    TextField tf = new TextField();
+    window.getContentPane().add(tf);
+
+    int width = 200;
+    int height = 200;
+
+    window.setSize(width, height);
     window.setVisible(true);
 
   }
